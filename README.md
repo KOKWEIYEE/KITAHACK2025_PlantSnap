@@ -1,6 +1,4 @@
-# flutter_application_1
-
-# 🌿 Edibility & Recipe Checker AI
+# PlantSnap
 
 A Flutter app that uses Google Gemini AI to analyze plant images and determine **if they're edible**, **safe to consume**, and suggests a simple recipe based on the user's selected recipe type.
 
