@@ -319,7 +319,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
             const SizedBox(height: 20),
             const Text(
-              'GreenSnap',
+              'PlantSnap',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,

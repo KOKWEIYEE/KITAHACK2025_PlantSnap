@@ -47,17 +47,17 @@ class FoodAnalyzerPageState extends State<FoodAnalyzerPage> {
     final base64Image = base64Encode(imageBytes);
 
     final prompt = '''
-This is a photo of a plant. Identify whether it is edible or not.
+This is a photo. Identify the main subject.
 
-Respond in the following format:
+If it is NOT a plant, but it is food, say: "This is a food item, but not a plant."
+If it is NOT food, say: "This is not a plant or food."
+If it IS a plant, respond in this format:
 
-Edibility: Indicate if it is edible or not and explain.
+Edibility: State if it is edible or not and explain.
 
 Safety Disclaimer: Add any important cautionary advice for handling or consuming the plant.
 
 Recipe: Provide a simple "${_selectedRecipeType == 'Any' ? 'suitable' : _selectedRecipeType.toLowerCase()}" recipe using this plant if it's edible.
-
-If not edible, omit the Recipe section and add a warning instead.
 ''';
 
     final url = Uri.parse(
@@ -102,6 +102,14 @@ If not edible, omit the Recipe section and add a warning instead.
     for (var line in lines) {
       if (line.trim().isEmpty) continue;
 
+      if (line.toLowerCase().contains("not a plant or food")) {
+        sections["Unrecognized"] = line.trim();
+        break;
+      } else if (line.toLowerCase().contains("not a plant") || line.toLowerCase().contains("not a plant, but")) {
+        sections["Non-Plant Food"] = line.trim();
+        break;
+      }
+
       if (line.contains(':')) {
         final parts = line.split(':');
         currentSection = parts.first.trim();
@@ -132,6 +140,14 @@ If not edible, omit the Recipe section and add a warning instead.
         case 'recipe':
           icon = Icons.restaurant_menu;
           color = Colors.orange.shade100;
+          break;
+        case 'non-plant food':
+          icon = Icons.fastfood;
+          color = Colors.blue.shade100;
+          break;
+        case 'unrecognized':
+          icon = Icons.block;
+          color = Colors.red.shade100;
           break;
         default:
           icon = Icons.info_outline;
@@ -215,7 +231,6 @@ If not edible, omit the Recipe section and add a warning instead.
             ),
             const SizedBox(height: 24),
 
-            // Upload container UI
             GestureDetector(
               onTap: _pickImage,
               child: Container(
@@ -238,7 +253,6 @@ If not edible, omit the Recipe section and add a warning instead.
 
             const SizedBox(height: 20),
 
-            // Image preview with loading
             if (_imageBytes != null)
               Column(
                 children: [
@@ -254,7 +268,6 @@ If not edible, omit the Recipe section and add a warning instead.
 
             const SizedBox(height: 20),
 
-            // AI styled response
             if (_analysisResult != null)
               Expanded(
                 child: ListView(
@@ -268,3 +281,4 @@ If not edible, omit the Recipe section and add a warning instead.
     );
   }
 }
+
