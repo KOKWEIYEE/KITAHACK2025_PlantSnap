@@ -54,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 fit: BoxFit.cover,
             ),
             SizedBox(width: 10),
-            Text('PlantSnap AI'),
+            Text('PlantSnap'),
           ],
         ),
         actions: [
