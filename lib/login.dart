@@ -9,16 +9,16 @@ void main() {
   ));
 }
 
-class LoginScreen extends StatefulWidget { // Changed to StatefulWidget
+class LoginScreen extends StatefulWidget { 
   const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> { // State class for LoginScreen
-  final _emailController = TextEditingController(); // Controller for email input
-  final _passwordController = TextEditingController(); // Controller for password input
+class _LoginScreenState extends State<LoginScreen> { 
+  final _emailController = TextEditingController(); 
+  final _passwordController = TextEditingController(); 
 
   String? _errorMessage;
   bool _obscurePassword = true; 
@@ -26,16 +26,16 @@ class _LoginScreenState extends State<LoginScreen> { // State class for LoginScr
   Future<void> _signInWithEmailAndPassword() async {
     try {
       setState(() {
-        _errorMessage = null; // Clear any previous error message
+        _errorMessage = null; 
       });
       await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: _emailController.text.trim(), // Get email from controller
-        password: _passwordController.text.trim(), // Get password from controller
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(), 
       );
       // If sign in is successful, navigate to HomeScreen
-      Navigator.pushReplacement( // Use pushReplacement to prevent going back to LoginScreen
+      Navigator.pushReplacement( 
         context,
-        MaterialPageRoute(builder: (context) => HomeScreen()), // Navigate to HomeScreen
+        MaterialPageRoute(builder: (context) => HomeScreen()), 
       );
     } on FirebaseAuthException catch (e) {
       setState(() {
@@ -46,7 +46,7 @@ class _LoginScreenState extends State<LoginScreen> { // State class for LoginScr
 
   @override
   void dispose() {
-    // Dispose of controllers when widget is disposed to prevent memory leaks
+    
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
@@ -55,8 +55,8 @@ class _LoginScreenState extends State<LoginScreen> { // State class for LoginScr
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 222, 230, 231),
-      body: SingleChildScrollView( // Wrap Column with SingleChildScrollView for overflow handling
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+      body: SingleChildScrollView( 
         child: Column(
           children: [
             const SizedBox(height: 85),
@@ -74,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> { // State class for LoginScr
             ),
             const SizedBox(height: 20),
             const Text(
-              'GreenTransport',
+              'PlantSnap',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -88,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> { // State class for LoginScr
                 children: [
                   // Email
                   TextFormField(
-                    controller: _emailController, // Assign email controller
+                    controller: _emailController, 
                     style: const TextStyle(color: Colors.black),
                     decoration: InputDecoration(
                       hintText: 'E-mail',
@@ -300,7 +300,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 222, 230, 231),
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -319,7 +319,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
             const SizedBox(height: 20),
             const Text(
-              'GreenTransport',
+              'GreenSnap',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,

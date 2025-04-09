@@ -23,10 +23,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/password.png
-    - assets/email.png
-    - assets/loginnature.png
     - assets/logo.png
     - assets/profile.png
-    - assets/office.png
-    - assets/arrow.png    
+    - assets/arrow.png
+    - assets/password.png
+    - assets/.env
