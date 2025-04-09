@@ -41,6 +41,6 @@ The response is displayed in clean, sectioned cards in the app UI.
 
 1. **Clone the repo**
    ```bash
-   git clone https://github.com/your-username/edibility-checker.git](https://github.com/KOKWEIYEE/KITAHACK2025_PlantSnap.git
-   cd edibility-checker
+   git clone https://github.com/KOKWEIYEE/KITAHACK2025_PlantSnap.git
+  
 
